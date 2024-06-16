@@ -45,7 +45,6 @@ public class BusArrivals {
     }
 
     public void execute(){
-        startTime = new Time(10, 10);
         ResultSet rs;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -60,7 +59,8 @@ public class BusArrivals {
             rs = preparedStatement.executeQuery();
 
             if (!rs.isBeforeFirst() ) {
-                System.out.println("No results.");
+                System.out.println("No bus is driving right now.");
+                return;
             }
         } catch (SQLException e) {
             System.out.println("Creating query and getting result failed:\n" + Arrays.toString(e.getStackTrace()));
